@@ -1,0 +1,7 @@
+[user]
+	name = Rotem Horesh
+	email = horesh.rotem@gmail.com
+[core]
+	editor = nvim
+[init]
+	defaultBranch = main
