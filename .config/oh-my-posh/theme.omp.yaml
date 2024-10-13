@@ -48,8 +48,16 @@ blocks:
     style: diamond
     background: p:highlight_high
     foreground: p:text
+    foreground_templates:
+    - '{{if eq "Charging" .State.String}}p:gold{{end}}'
+    - '{{if eq "Discharging" .State.String}}p:love{{end}}'
+    - '{{if eq "Full" .State.String}}p:foam{{end}}'
     leading_diamond: "<transparent,background>\ue0b0</>"
     trailing_diamond: "\ue0b4"
+    properties:
+      charging_icon: " "
+      discharging_icon: " "
+      charged_icon: " "
     template: " {{ if not .Error }}{{ .Icon  }}{{ .Percentage }}%{{ end }}{{ .Error }} "
 
 # Top - Right
