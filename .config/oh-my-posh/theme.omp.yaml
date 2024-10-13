@@ -1,0 +1,108 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+final_space: true
+version: 2
+
+# rose-pine palette
+palette: 
+  base: "#232136"
+  surface: "#2a273f"
+  overlay: "#393552"
+  muted: "#6e6a86"
+  subtle: "#908caa"
+  text: "#e0def4"
+  love: "#eb6f92"
+  gold: "#f6c177"
+  rose: "#ea9a97"
+  pine: "#3e8fb0"
+  foam: "#9ccfd8"
+  iris: "#c4a7e7"
+  highlight_low: "#2a283e"
+  highlight_med: "#44415a"
+  highlight_high: "#56526e"
+
+blocks: 
+# Top - Left
+- type: prompt
+  alignment: left
+  newline: true
+  segments:
+  # User name
+  - type: text
+    style: diamond
+    leading_diamond: " \ue0b6"
+    trailing_diamond: "\ue0b0"
+    background: p:highlight_high
+    foreground: p:text
+    template: " {{ .UserName }} "
+  # Time
+  - type: time
+    style: powerline
+    background: p:highlight_high
+    foreground: p:text
+    powerline_symbol: "\ue0b0"
+    properties:
+      time_format: "2.1 15:04"
+  # Battery
+  - type: battery
+    style: diamond
+    background: p:highlight_high
+    foreground: p:text
+    leading_diamond: "<transparent,background>\ue0b0</>"
+    trailing_diamond: "\ue0b4"
+    template: " {{ if not .Error }}{{ .Icon  }}{{ .Percentage }}%{{ end }}{{ .Error }} "
+
+# Top - Right
+- type: prompt
+  alignment: right
+  segments: 
+  # Go
+  - type: go
+    style: diamond
+    leading_diamond: " \ue0b6"
+    trailing_diamond: "\ue0b4"
+    background: p:highlight_high
+    foreground: "#69d7e2"
+    template: " {{ if not .Error }}\ue627 {{ .Full }}{{ end }}{{ .Error }} "
+  # Git
+  - type: git
+    style: diamond
+    leading_diamond: " \ue0b6"
+    trailing_diamond: "\ue0b4 "
+    background: p:highlight_high
+    foreground: p:text
+    properties:
+      fetch_status: true
+      fetch_stash_count: true
+      fetch_worktree_count: true
+      fetch_upstream_icon: true
+      template: " {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} "
+
+# Middle - Left
+- type: prompt
+  alignment: left
+  newline: true
+  segments:
+  - type: text
+    style: plain
+    foreground: p:subtle
+    template: "\u256d\u2500"
+  # Current path
+  - type: path
+    style: plain
+    foreground: p:foam
+    properties:
+      folder_separator_icon: " / "
+      home_icon: "~"
+      style: full
+    template: " {{ .Path }} "
+
+# Bottom - Left
+- type: prompt
+  alignment: left
+  newline: true
+  segments:
+  - type: text
+    style: plain
+    foreground: p:subtle
+    template: "\u2570\u2500 "
