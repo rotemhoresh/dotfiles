@@ -35,6 +35,13 @@ blocks:
     background: p:highlight_high
     foreground: p:text
     template: " {{ .UserName }} "
+  # IP
+  - type: ipify
+    style: powerline
+    background: p:highlight_high
+    foreground: p:text
+    powerline_symbol: "\ue0b0"
+    template: " {{ .IP }} "
   # Time
   - type: time
     style: powerline
@@ -42,22 +49,16 @@ blocks:
     foreground: p:text
     powerline_symbol: "\ue0b0"
     properties:
-      time_format: "2.1 15:04"
+      time_format: "Mon 2.1 15:04"
   # Battery
   - type: battery
     style: diamond
     background: p:highlight_high
     foreground: p:text
-    foreground_templates:
-    - '{{if eq "Charging" .State.String}}p:gold{{end}}'
-    - '{{if eq "Discharging" .State.String}}p:love{{end}}'
-    - '{{if eq "Full" .State.String}}p:foam{{end}}'
     leading_diamond: "<transparent,background>\ue0b0</>"
     trailing_diamond: "\ue0b4"
     properties:
       charging_icon: " "
-      discharging_icon: " "
-      charged_icon: " "
     template: " {{ if not .Error }}{{ .Icon  }}{{ .Percentage }}%{{ end }}{{ .Error }} "
 
 # Top - Right
@@ -66,12 +67,22 @@ blocks:
   segments: 
   # Go
   - type: go
-    style: diamond
-    leading_diamond: " \ue0b6"
-    trailing_diamond: "\ue0b4"
-    background: p:highlight_high
-    foreground: "#69d7e2"
-    template: " {{ if not .Error }}\ue627 {{ .Full }}{{ end }}{{ .Error }} "
+    style: plain
+    background: transparent 
+    foreground: p:foam
+    template: "<p:rose>|</> {{ if not .Error }}<#69d7e2>\ue627</> {{ .Full }}{{ end }}{{ .Error }} "
+  # NPM
+  - type: npm
+    style: plain
+    background: transparent 
+    foreground: p:foam
+    template: "<p:rose>|</> {{ if not .Error }}<#cb3837>\ue71e</> {{ .Full }}{{ end }}{{ .Error }} "
+  # Node.js
+  - type: node
+    style: plain
+    background: transparent 
+    foreground: p:foam
+    template: "<p:rose>|</> {{ if not .Error }}<#80bd00>\ued0d</> {{ .Full }}{{ end }}{{ .Error }} "
   # Git
   - type: git
     style: diamond
@@ -84,7 +95,11 @@ blocks:
       fetch_stash_count: true
       fetch_worktree_count: true
       fetch_upstream_icon: true
-      template: " {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} "
+      status_formats: 
+        Modified: "<p:rose> ~%d</>"
+        Deleted: "<p:love> -%d</>"
+        Added: "<p:foam> +%d</>"
+    template: " {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b {{ .StashCount }}{{ end }} "
 
 # Middle - Left
 - type: prompt
@@ -94,7 +109,7 @@ blocks:
   - type: text
     style: plain
     foreground: p:subtle
-    template: "\u256d\u2500"
+    template: "\u256d\u2500|"
   # Current path
   - type: path
     style: plain
