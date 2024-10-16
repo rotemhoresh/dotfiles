@@ -7,6 +7,7 @@ return {
     configs.setup({
       ensure_installed = {
         "c",
+        "cpp",
         "lua",
         "vim",
         "vimdoc",
@@ -14,6 +15,7 @@ return {
         "typescript",
         "html",
         "css",
+        "sql",
         "go",
         "gomod",
         "gosum",

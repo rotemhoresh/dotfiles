@@ -120,6 +120,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 . "$HOME/.cargo/env"
 
+# create a dir and cd into it
+function mkcd() {
+  mkdir "$1" && cd "$1"
+}
+
 # adding entries to PATH
 export PATH="$PATH:/usr/local/go/bin"
 export PATH="$PATH:/home/rotemhoresh/go/bin"
@@ -127,3 +132,4 @@ export PATH="$PATH:/home/rotemhoresh/.local/bin"
 
 # initialize oh-my-posh
 eval "$(oh-my-posh init bash --config /home/rotemhoresh/.config/oh-my-posh/theme.omp.yaml)"
+source ~/.bash_completion/alacritty
