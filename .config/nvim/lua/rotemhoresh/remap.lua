@@ -26,10 +26,8 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 -- format current buffer
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
+-- toggle LSP code action
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
+
 -- change current word
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-
--- source current file
-vim.keymap.set("n", "<leader><leader>", function()
-  vim.cmd("so")
-end)
