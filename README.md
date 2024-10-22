@@ -32,5 +32,5 @@ git clone git@github.com:rotemhoresh/dotfiles.git .dotfiles
 Then use Stow to create the symlinks:
 
 ```bash
-stow .
+cd ~/.dotfiles && stow .
 ``` 
