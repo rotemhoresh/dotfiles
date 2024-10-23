@@ -1,4 +1,3 @@
-alias cdp="cd ~/projects"
+alias firefox="/home/rotemhoresh/firefox/firefox"
 
-# Git aliases
-alias gac="git add . && git commit -m "
+alias v="nvim ."

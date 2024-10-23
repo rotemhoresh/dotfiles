@@ -125,11 +125,26 @@ function mkcd() {
   mkdir "$1" && cd "$1"
 }
 
+function cheat() {
+  curl cheat.sh/$1
+}
+
 # adding entries to PATH
 export PATH="$PATH:/usr/local/go/bin"
 export PATH="$PATH:/home/rotemhoresh/go/bin"
 export PATH="$PATH:/home/rotemhoresh/.local/bin"
 
+export LANG=en_IL
+export LC_CTYPE=en_IL
+export LC_NUMERIC=en_IL
+export LC_TIME=en_IL
+export LC_COLLATE=en_IL
+export LC_MONETARY=en_IL
+export LC_MESSAGES=en_IL
+
 # initialize oh-my-posh
 eval "$(oh-my-posh init bash --config /home/rotemhoresh/.config/oh-my-posh/theme.omp.yaml)"
 source ~/.bash_completion/alacritty
+eval "$(zoxide init bash)"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
