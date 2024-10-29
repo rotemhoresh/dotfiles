@@ -44,6 +44,17 @@ return {
       vim.lsp.protocol.make_client_capabilities(),
       cmp_lsp.default_capabilities())
 
+    require("lspconfig").nixd.setup({
+      settings = {
+        nixd = {
+          formatting = {
+            command = { "nixfmt" }
+          }
+        }
+      },
+      capabilities = capabilities
+    })
+
     require("fidget").setup({})
     require("mason").setup()
     require("mason-lspconfig").setup({
@@ -102,6 +113,7 @@ return {
                   unusedparams = true, -- Detect unused parameters
                 },
                 staticcheck = true,    -- Enable static analysis
+                experimentalTemplateSupport = true,
               },
             },
             on_attach = function(client, bufnr)

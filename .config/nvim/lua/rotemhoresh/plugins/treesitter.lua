@@ -24,6 +24,7 @@ return {
         "json",
         "yaml",
         "bash",
+        "svelte",
       },
       sync_install = false,
       highlight = {
